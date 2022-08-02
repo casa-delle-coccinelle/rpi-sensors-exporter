@@ -9,6 +9,7 @@ import config_loader
 import ads
 import bh1750
 import si1145
+import os
 
 app = Flask("exporter")
 
@@ -73,4 +74,4 @@ def getSensors():
 
     return make_wsgi_app()
 
-serve(app, host='0.0.0.0', port=8080)
+serve(app, host='0.0.0.0', port=(os.getenv('SENSORS_EXPORTER_PORT') or 8080))
