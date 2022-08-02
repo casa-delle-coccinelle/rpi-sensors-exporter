@@ -34,5 +34,5 @@ setup(name='rpi_sensors_exporter',
           'git+https://github.com/adafruit/Adafruit_Python_BMP.git#egg=Adafruit_BMP-1.5.4', 
           'git+https://github.com/casa-delle-coccinelle/Python_SI1145.git#egg=SI1145-1.0.0'
           ],
-      packages=['rpi-sensors-exporter']
+      packages=['rpi_sensors_exporter']
      )
