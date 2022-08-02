@@ -8,7 +8,7 @@
 
 from setuptools import setup
 
-setup(name='rpi-sensors-exporter',
+setup(name='rpi_sensors_exporter',
       version='0.0.1',
       description='Raspberry Pi sensors exporter for Prometheus',
       author='Aneliya Ivanova',
