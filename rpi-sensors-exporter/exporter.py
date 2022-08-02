@@ -75,7 +75,10 @@ def getSensors():
     return make_wsgi_app()
 
 
-if __name__ == '__main__':
+def main():
     serve(app, host='0.0.0.0', port=(os.getenv('SENSORS_EXPORTER_PORT') or 8080))
 
+
+if __name__ == '__main__':
+    main()
 
