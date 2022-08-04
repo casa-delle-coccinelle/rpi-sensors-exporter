@@ -8,6 +8,7 @@ import os
 
 app = Flask("exporter")
 
+port, config = config_loader.load()
 
 
 @app.route("/metrics")
@@ -29,7 +30,8 @@ def getSensors():
         pass
 
     try:
-        for device in config_loader.config['gpio_devices']:
+        for device in config['gpio_devices']:
+            print(config['gpio_devices'])
             metrics.initializeMetrics("gpio", device['type'])
             sensor = gpio.GPIOMetrics(device['name'], device['pin'])
             sensor.getMetrics()
@@ -39,7 +41,7 @@ def getSensors():
 
 
     try:
-        for device in config_loader.config['ads_devices']:
+        for device in config['ads_devices']:
             metrics.initializeMetrics("ads", device['type'])
             try:
                 sensor = ads.ADSMetrics(device['name'], device['analog_in'], device['max_value'], device['min_value'])
@@ -71,7 +73,7 @@ def getSensors():
 
 
 def main():
-    serve(app, host='0.0.0.0', port=(os.getenv('SENSORS_EXPORTER_PORT') or 8080))
+    serve(app, host='0.0.0.0', port=(port or 8080))
 
 
 if __name__ == '__main__':
