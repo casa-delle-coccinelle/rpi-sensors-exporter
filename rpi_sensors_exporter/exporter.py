@@ -1,14 +1,9 @@
 from prometheus_client import make_wsgi_app
 from flask import Flask
 from waitress import serve
-import bmp180
-import bme688
-import gpio
-import metrics
-import config_loader
-import ads
-import bh1750
-import si1145
+from . import bmp180, bme688, gpio, ads, bh1750, si1145
+from . import metrics
+from . import config_loader
 import os
 
 app = Flask("exporter")

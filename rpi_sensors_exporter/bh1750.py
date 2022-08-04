@@ -1,6 +1,6 @@
 import board
 import adafruit_bh1750
-import metrics
+from . import metrics
 
 
 class Metrics:

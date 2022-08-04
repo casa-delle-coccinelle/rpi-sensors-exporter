@@ -1,5 +1,5 @@
 from gpiozero import InputDevice
-import metrics
+from . import metrics
 
 
 class GPIOMetrics:
