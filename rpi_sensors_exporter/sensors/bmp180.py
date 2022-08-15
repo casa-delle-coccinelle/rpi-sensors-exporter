@@ -1,5 +1,6 @@
 import Adafruit_BMP.BMP085 as BMP085 
-from . import metrics
+
+from .. import metrics
 
 
 class BMP180Metrics:

@@ -1,6 +1,8 @@
-import bme680 
 import time
-from . import metrics
+
+import bme680 
+
+from .. import metrics
 
 
 class BME688Metrics:

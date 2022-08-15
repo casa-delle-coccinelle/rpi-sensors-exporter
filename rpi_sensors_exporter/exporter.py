@@ -1,10 +1,12 @@
+import os
+
 from prometheus_client import make_wsgi_app
 from flask import Flask
 from waitress import serve
-from . import bmp180, bme688, gpio, ads, bh1750, si1145
+
+from .sensors import bmp180, bme688, gpio, ads, bh1750, si1145
 from . import metrics
 from . import config_loader
-import os
 
 app = Flask("exporter")
 

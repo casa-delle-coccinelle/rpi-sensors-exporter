@@ -1,5 +1,6 @@
 import SI1145.SI1145 as SI1145 
-from . import metrics
+
+from .. import metrics
 
 class Metrics:
     sensor = None
