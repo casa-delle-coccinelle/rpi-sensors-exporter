@@ -33,12 +33,11 @@ def getSensors():
 
     try:
         for device in config['gpio_devices']:
-            print(config['gpio_devices'])
             metrics.initializeMetrics("gpio", device['type'])
             sensor = gpio.GPIOMetrics(device['name'], device['pin'])
             sensor.getMetrics()
             metrics.sensor_exporter_info.labels(device['name'], 'gpio').set(1)
-    except (AttributeError):
+    except (AttributeError, TypeError):
         pass
 
 
@@ -52,7 +51,7 @@ def getSensors():
 
             sensor.getMetrics()
             metrics.sensor_exporter_info.labels(device['name'], 'adc').set(1)
-    except (AttributeError):
+    except (AttributeError, TypeError):
         pass
 
     try:
