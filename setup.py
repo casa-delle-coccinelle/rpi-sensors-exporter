@@ -6,7 +6,7 @@
 #
 # Distributed under terms of the MIT license.
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='rpi_sensors_exporter',
       version='0.0.1',
@@ -32,5 +32,6 @@ setup(name='rpi_sensors_exporter',
       dependency_links=[
           'git+https://github.com/adafruit/Adafruit_Python_BMP.git#egg=Adafruit_BMP-1.5.4', 
           'git+https://github.com/casa-delle-coccinelle/Python_SI1145.git#egg=SI1145-1.0.0'
-          ]
+          ],
+      packages=find_packages()
      )
