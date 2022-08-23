@@ -6,7 +6,7 @@
 #
 # Distributed under terms of the MIT license.
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='rpi_sensors_exporter',
       version='0.0.1',
@@ -27,11 +27,12 @@ setup(name='rpi_sensors_exporter',
           'prometheus_client>=0.13.1', 
           'PyYAML>=6.0', 
           'SI1145==1.0.0', 
-          'waitress>=2.1.0'
+          'waitress>=2.1.0',
+          'schema>=0.7.5'
           ],
       dependency_links=[
           'git+https://github.com/adafruit/Adafruit_Python_BMP.git#egg=Adafruit_BMP-1.5.4', 
           'git+https://github.com/casa-delle-coccinelle/Python_SI1145.git#egg=SI1145-1.0.0'
           ],
-      packages=['rpi_sensors_exporter']
+      packages=find_packages()
      )
