@@ -1,8 +1,13 @@
 import os
 import argparse
+import logging
+import sys
 
 import yaml
 from schema import Schema, And, Optional, SchemaError
+
+logging.basicConfig(stream=sys.stdout, format='%(asctime)s [%(levelname)s] - %(name)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def load():
@@ -17,22 +22,34 @@ def load():
 
 
     if args.config_file:
+        logger.info('Configuration file ' + str(args.config_file) + ' is provided in command line')
         with open(args.config_file) as f:
             config = yaml.load(f, Loader=yaml.FullLoader)
+            logger.info('Validating configurations in file ' + str(args.config_file))
             validate(config)
+            logger.info('Validation is successful, exporter will be started with config from '  + str(args.config_file))
     else:
+        logger.info('No configuration file is provided, checking environment')
         try:
             with open(os.environ['SENSORS_EXPORTER_CONFIG']) as f:
                 config = yaml.load(f, Loader=yaml.FullLoader)
                 validate(config)
+                logger.info('A valid configuration file was found in environment, exporter will be started with config from ' + str(os.environ['SENSORS_EXPORTER_CONFIG']))
         except (KeyError):
+            logger.info('No configuration was found, assuming only I2C sensors are connected')
             pass
         
 
     if args.port:
+        logger.info('Port ' + str(args.port) + ' is provided in command line')
         port = args.port
     else:
-        port = os.getenv('SENSORS_EXPORTER_PORT')
+        try:
+            port = os.environ['SENSORS_EXPORTER_PORT']
+            logger.info('Port ' + str(port) + ' was found in environment')
+        except (KeyError):
+            logger.info('No port configuration found, will use the default one')
+            pass
 
     return port, config
 

@@ -1,4 +1,6 @@
 import os
+import logging
+import sys
 
 from prometheus_client import make_wsgi_app
 from flask import Flask
@@ -10,12 +12,16 @@ from . import config_loader
 
 app = Flask("exporter")
 
+logging.basicConfig(stream=sys.stdout, format='%(asctime)s [%(levelname)s] - %(name)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+logger = logging.getLogger(__name__)
+
 port, config = config_loader.load()
 
 
 @app.route("/metrics")
 def getSensors():
     try:
+        logger.debug('Trying sensor type BMP180')
         sensor = bmp180.BMP180Metrics()
         metrics.initializeMetrics("bmp180")
         sensor.getMetrics()
