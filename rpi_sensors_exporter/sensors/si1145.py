@@ -8,6 +8,7 @@ class Metrics:
     def __init__(self):
 
         self.sensor = SI1145.SI1145(i2c_bus=1)
+        self.sensor.begin()
 
     def __del__(self):
         self.sensor.close()
