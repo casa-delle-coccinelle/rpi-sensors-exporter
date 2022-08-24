@@ -21,6 +21,7 @@ def getSensors():
         logger.debug('----------------BMP180-----------')
         logger.debug('Try read sensor data from BMP180')
         sensor = bmp180.BMP180Metrics()
+        logger.info('Sensor type BMP180 is connected to the system')
         logger.debug('Initializing metrics for BMP180 sensor')
         metrics.initializeMetrics("bmp180")
         sensor.getMetrics()
@@ -35,6 +36,7 @@ def getSensors():
         logger.debug('----------------BME688-----------')
         logger.debug('Try read sensor data from BME688')
         sensor = bme688.BME688Metrics()
+        logger.info('Sensor type BME688 is connected to the system')
         logger.debug('Initializing metrics for BME688 sensor')
         metrics.initializeMetrics("bme688")
         logger.debug('Getting sensor data')
@@ -51,6 +53,7 @@ def getSensors():
         for device in config['gpio_devices']:
             logger.debug(f"Try read sensor data from GPIO sensor {device['name']}")
             sensor = gpio.GPIOMetrics(device['name'], device['pin'])
+            logger.info(f"GPIO sensor {device['name']} is connected to the system")
             logger.debug(f"Initializing metrics for GPIO sensor {device['name']}")
             metrics.initializeMetrics("gpio", device['type'])
             logger.debug('Getting sensor data')
@@ -70,9 +73,11 @@ def getSensors():
             try:
                 sensor = ads.ADSMetrics(device['name'], device['analog_in'], device['max_value'], device['min_value'])
                 logger.debug(f"Min and max values are configured for sensor {device['name']}, percentage will be calculated")
+                logger.info(f"ADS sensor {device['name']} is connected to the system")
             except (KeyError):
                 sensor = ads.ADSMetrics(device['name'], device['analog_in'])
                 logger.debug(f"Min and max values are NOT configured for sensor {device['name']}, percentage will NOT be calculated")
+                logger.info(f"ADS sensor {device['name']} is connected to the system")
 
             logger.debug(f"Initializing metrics for ADS sensor {device['name']}")
             metrics.initializeMetrics("ads", device['type'])
@@ -89,6 +94,7 @@ def getSensors():
         logger.debug('----------------BH1750-----------')
         logger.debug('Try read sensor data from BH1750')
         sensor = bh1750.Metrics()
+        logger.info('Sensor type BH1750 is connected to the system')
         logger.debug('Initializing metrics for BH1750 sensor')
         metrics.initializeMetrics("bh1750")
         logger.debug('Getting sensor data')
@@ -104,6 +110,7 @@ def getSensors():
         logger.debug('----------------SI1145-----------')
         logger.debug('Try read sensor data from SI1145')
         sensor = si1145.Metrics()
+        logger.info('Sensor type SI1145 is connected to the system')
         logger.debug('Initializing metrics for SI1145 sensor')
         metrics.initializeMetrics("si1145")
         logger.debug('Getting sensor data')
