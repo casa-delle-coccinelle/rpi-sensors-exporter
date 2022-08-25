@@ -60,7 +60,7 @@ def getSensors():
             sensor.getMetrics()
             metrics.sensor_exporter_info.labels(device['name'], 'gpio').set(1)
         logger.debug('----------------GPIO-----------')
-    except (AttributeError, TypeError):
+    except (KeyError):
         logger.info('There are no GPIO sensors connected to the system')
         logger.debug('----------------GPIO-----------')
         pass
@@ -85,7 +85,7 @@ def getSensors():
             sensor.getMetrics()
             metrics.sensor_exporter_info.labels(device['name'], 'adc').set(1)
             logger.debug('----------------ADS-----------')
-    except (AttributeError, TypeError):
+    except (KeyError):
         logger.info('There are no ADS sensors connected to the system')
         logger.debug('----------------ADS-----------')
         pass
