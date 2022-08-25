@@ -1,14 +1,17 @@
 import time
+import logging
 
 import bme680 
 
 from .. import metrics
 
+logger = logging.getLogger("sensors_exporter")
 
 class BME688Metrics:
     sensor = None
 
     def __init__(self):
+        logger.debug('[BME688] Initializing sensor')
         try:
             self.sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
         except (RuntimeError, IOError):
@@ -27,6 +30,8 @@ class BME688Metrics:
 
 
     def getSensorData(self):
+
+        logger.debug('[BME688] Reading sensor data')
         self.sensor.get_sensor_data()
         _temp = self.sensor.data.temperature
         _press = self.sensor.data.pressure
@@ -45,5 +50,6 @@ class BME688Metrics:
     def getMetrics(self):
     
         m_temp, m_press, m_hum, m_gas = self.getSensorData()
+        logger.debug('[BME688] Populating metrics')
 
         return metrics.temperature.labels("bme688", "i2c").set(m_temp), metrics.pressure.labels("bme688", "i2c").set(m_press), metrics.humidity.labels("bme688", "i2c").set(m_hum), metrics.gas_resistance.labels("bme688", "i2c").set(m_gas)
