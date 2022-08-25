@@ -7,7 +7,7 @@ from .. import metrics
 
 logger = logging.getLogger("sensors_exporter")
 
-class BME688Metrics:
+class Metrics:
     sensor = None
 
     def __init__(self):
@@ -52,4 +52,4 @@ class BME688Metrics:
         m_temp, m_press, m_hum, m_gas = self.getSensorData()
         logger.debug('[BME688] Populating metrics')
 
-        return metrics.temperature.labels("bme688", "i2c").set(m_temp), metrics.pressure.labels("bme688", "i2c").set(m_press), metrics.humidity.labels("bme688", "i2c").set(m_hum), metrics.gas_resistance.labels("bme688", "i2c").set(m_gas)
+        metrics.temperature.labels("bme688", "i2c").set(m_temp), metrics.pressure.labels("bme688", "i2c").set(m_press), metrics.humidity.labels("bme688", "i2c").set(m_hum), metrics.gas_resistance.labels("bme688", "i2c").set(m_gas)

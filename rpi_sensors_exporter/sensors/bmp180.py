@@ -6,7 +6,7 @@ from .. import metrics
 
 logger = logging.getLogger("sensors_exporter")
 
-class BMP180Metrics:
+class Metrics:
     sensor = None
 
     def __init__(self):
@@ -25,7 +25,7 @@ class BMP180Metrics:
     
     def getMetrics(self):
 
-        m_temp, m_press, m_alt, m_sea_press = self.getSensorData()
+        m_temp, m_press, m_altitude, m_sea_press = self.getSensorData()
         logger.debug('[BMP180] Populating metrics')
 
-        return metrics.temperature.labels("bmp180", "i2c").set(m_temp), metrics.pressure.labels("bmp180", "i2c").set(m_press * 0.01), metrics.altitude.labels("bmp180", "i2c").set(m_alt), metrics.sealevel.labels("bmp180", "i2c").set(m_sea_press * 0.01)
+        metrics.temperature.labels("bmp180", "i2c").set(m_temp), metrics.pressure.labels("bmp180", "i2c").set(m_press * 0.01), metrics.altitude.labels("bmp180", "i2c").set(m_altitude), metrics.sealevel.labels("bmp180", "i2c").set(m_sea_press * 0.01)

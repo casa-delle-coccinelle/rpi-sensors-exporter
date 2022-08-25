@@ -10,7 +10,7 @@ from .sensors import bmp180, bme688, gpio, ads, bh1750, si1145
 from . import metrics
 from . import config_loader
 
-app = Flask("exporter")
+app = Flask("sensors_exporter")
 
 logger = logging.getLogger("sensors_exporter")
 
@@ -20,7 +20,7 @@ def getSensors():
     try:
         logger.debug('----------------BMP180-----------')
         logger.debug('Try read sensor data from BMP180')
-        sensor = bmp180.BMP180Metrics()
+        sensor = bmp180.Metrics()
         logger.info('Sensor type BMP180 is connected to the system')
         logger.debug('Initializing metrics for BMP180 sensor')
         metrics.initializeMetrics("bmp180")
@@ -35,7 +35,7 @@ def getSensors():
     try:
         logger.debug('----------------BME688-----------')
         logger.debug('Try read sensor data from BME688')
-        sensor = bme688.BME688Metrics()
+        sensor = bme688.Metrics()
         logger.info('Sensor type BME688 is connected to the system')
         logger.debug('Initializing metrics for BME688 sensor')
         metrics.initializeMetrics("bme688")
@@ -52,7 +52,7 @@ def getSensors():
         logger.debug('----------------GPIO-----------')
         for device in config['gpio_devices']:
             logger.debug(f"Try read sensor data from GPIO sensor {device['name']}")
-            sensor = gpio.GPIOMetrics(device['name'], device['pin'])
+            sensor = gpio.Metrics(device['name'], device['pin'])
             logger.info(f"GPIO sensor {device['name']} is connected to the system")
             logger.debug(f"Initializing metrics for GPIO sensor {device['name']}")
             metrics.initializeMetrics("gpio", device['type'])
@@ -71,7 +71,7 @@ def getSensors():
         for device in config['ads_devices']:
             logger.debug(f"Try read sensor data from ADS sensor {device['name']}")
             try:
-                sensor = ads.ADSMetrics(device['name'], device['analog_in'], device['max_value'], device['min_value'])
+                sensor = ads.Metrics(device['name'], device['analog_in'], device['max_value'], device['min_value'])
                 logger.debug(f"Min and max values are configured for sensor {device['name']}, percentage will be calculated")
                 logger.info(f"ADS sensor {device['name']} is connected to the system")
             except (KeyError):
@@ -130,6 +130,9 @@ def main():
 
     config_loader.logs_setup()
     port, config = config_loader.load()
+
+    metrics.initializeMetrics()
+
     serve(app, host='0.0.0.0', port=(port or 8080))
 
 

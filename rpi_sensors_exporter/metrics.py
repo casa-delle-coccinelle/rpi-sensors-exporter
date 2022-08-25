@@ -4,19 +4,8 @@ from prometheus_client import Gauge
 
 logger = logging.getLogger("sensors_exporter")
 
-temperature = None
-pressure = None 
-humidity = None 
-gas_resistance = None 
-altitude = None
-sealevel = None
-percentage = None
-value = None
-voltage = None
-sensor_exporter_info = None
 
-
-def initializeMetrics(sensor_type, metric_type=None):
+def initializeMetrics(sensor_type=None, metric_type=None):
     global temperature
     global pressure
     global humidity 
@@ -32,15 +21,15 @@ def initializeMetrics(sensor_type, metric_type=None):
     global ir_light
     global uv_index
 
-    try:
-        logger.debug('Initializing exporter info metric')
-        sensor_exporter_info = Gauge("sensor_exporter_info", "Exporter info", ['sensor', 'connection'])
-        logger.debug('Exporter info metric initialized successfully')
-    except (ValueError):
-        logger.debug('Metric already initialized')
-        pass
-
-    if sensor_type == "bme688":
+    if not sensor_type:
+        try:
+            logger.debug('Initializing exporter info metric')
+            sensor_exporter_info = Gauge("sensor_exporter_info", "Exporter info", ['sensor', 'connection'])
+            logger.debug('Exporter info metric initialized successfully')
+        except (ValueError):
+            logger.debug('Metric already initialized')
+            pass
+    elif sensor_type == "bme688":
         try:
             logger.debug('Initializing temperature metric')
             temperature = Gauge("temperature_celsius", "Temperature in celsius", ['sensor', 'connection'])
