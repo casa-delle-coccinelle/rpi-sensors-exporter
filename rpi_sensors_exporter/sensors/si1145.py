@@ -13,7 +13,7 @@ class Metrics:
 
         logger.debug('[SI1145] Initializing sensor')
         self.sensor = SI1145.SI1145(i2c_bus=1)
-        self.sensor.begin()
+        self.sensor.readProx()
 
     def __del__(self):
         self.sensor.close()
