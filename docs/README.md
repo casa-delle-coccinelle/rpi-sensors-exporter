@@ -22,6 +22,7 @@ Supported are command line argument and environment variables for configuration.
 | -h, --help | N/A | Prints all supported arguments|No|0.0.1
 
 * Environment variables
+
 The following environment variables are supported
 
 | Option |Default| Description |Required|Since version|
