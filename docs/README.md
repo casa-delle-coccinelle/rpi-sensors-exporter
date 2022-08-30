@@ -32,7 +32,7 @@ The following environment variables are supported
 ### Configuration file format
 YAML formatted document with optional configuration for sensors connected to GPIO or ADC:
 
-| Configuration | Description ||Required|Since version|
+| Configuration | Description |Type|Required|Since version|
 |--|--|--|--|--|--|
 | gpio_devices | A list of dictionaries describing GPIO devices connected to the system |list|No| 0.0.1 |
 | gpio_devices.name | Name of the sensor |str|Yes| 0.0.1 |
