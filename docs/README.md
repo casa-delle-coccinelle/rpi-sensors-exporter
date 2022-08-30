@@ -9,7 +9,8 @@ Or with ansible role, available in https://github.com/casa-delle-coccinelle/ansi
 ### Configuration
 Supported are command line argument and environment variables for configuration. Command line arguments will take precedence over the  environment variables. 
 * Command line
-`python -m rpi_sensors_exporter [-h] [-p PORT] [-c CONFIG_FILE] [-v] [-d]`
+
+        python -m rpi_sensors_exporter [-h] [-p PORT] [-c CONFIG_FILE] [-v] [-d]
 
 
 | Option |Default| Description |Required|Since version|
@@ -33,7 +34,7 @@ The following environment variables are supported
 YAML formatted document with optional configuration for sensors connected to GPIO or ADC:
 
 | Configuration | Description |Type|Required|Since version|
-|--|--|--|--|--|--|
+|--|--|--|--|--|
 | gpio_devices | A list of dictionaries describing GPIO devices connected to the system |list|No| 0.0.1 |
 | gpio_devices.name | Name of the sensor |str|Yes| 0.0.1 |
 | gpio_devices.type | Type of the sensor |str|Yes| 0.0.1 |
