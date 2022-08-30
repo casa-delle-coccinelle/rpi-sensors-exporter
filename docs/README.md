@@ -31,6 +31,7 @@ The following environment variables are supported
 
 ### Configuration file format
 YAML formatted document with optional configuration for sensors connected to GPIO or ADC:
+
  | Configuration | Description ||Required|Since version|
 |--|--|--|--|--|--|
 | gpio_devices | A list of dictionaries describing GPIO devices connected to the system |list|No| 0.0.1 |
@@ -47,6 +48,7 @@ YAML formatted document with optional configuration for sensors connected to GPI
 Validation of the configuration file is performed on boot and if it is not valid, an exeption will be raised. Example configuration file can be fount in [examples/config](../examples/config) directory of the project
 
 *Some notes on **ads_devices.max_value** and **ads_devices.min_value**:*
+
 Analogue data provided by some sensors is under the form of output voltage deviation, which ADC represents in numbers. Bigger resolution of the ADC provides larger numbers which results in more accurate calculations. For example 16-bit ADC provides 16-bit integer representation of the input voltage from the sensor connected to it. Numerous factors affect the output voltage of the sensor, e.g. power supply voltage (usually can vary between 3.3V and 5V), electrical conductivity of the environment (sand, soil, air, etc.) where the sensor is located and more. For each sensor connected to ADC, the exporter provides metrics ${ads_devices_type}_value from which max_value and min_value can be retrieved and configured for each sensor. max_value represents 100% and min_value represent 0%.
 
 For example, the following approach was used to calibrate the capacitive soil moisture sensor:
