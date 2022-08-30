@@ -7,7 +7,7 @@ ads_devices:
     type: "soil_moisture"
     analog_in: 0
     max_value: 32767
-    min_value: 29498
+    min_value: 23656
   - name: "fc-28"
     type: "soil_moisture"
     analog_in: 1
