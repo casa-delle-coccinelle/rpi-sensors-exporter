@@ -1,13 +1,7 @@
 # Documentation
-### Installation
-rpi_sensors_exporter package can be installed using pip:
-
-    sudo pip install git+https://github.com/casa-delle-coccinelle/rpi-sensors-exporter@v0.0.1
-
-Or with ansible role, available in https://github.com/casa-delle-coccinelle/ansible-role-rpi-sensors-exporter
 
 ### Configuration
-Supported are command line argument and environment variables for configuration. Command line arguments will take precedence over the  environment variables. 
+Supported are command line argument and environment variables for configuration. Command line arguments will take precedence over the environment variables. 
 * Command line
 
         python -m rpi_sensors_exporter [-h] [-p PORT] [-c CONFIG_FILE] [-v] [-d]

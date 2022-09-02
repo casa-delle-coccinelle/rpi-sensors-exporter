@@ -13,8 +13,17 @@ Currently supported sensors are:
 
 The intention is collected data to be used in various garden automations such as watering (watering only when needed, disabling the system when there is chance of freezing, etc.), shade and rain covers to protect the plants and provide optimal growing conditions and more. Constant monitoring of the weather conditions gives a good orientation when to do gerdening specific tasks, e.g. when to plant or sow, when to spray, etc.
 
-### Documentation
-For more information on how to install and use the package visit [docs](./docs) directory of the project.
+### Usage
+rpi_sensors_exporter package can be installed using pip:
+
+    sudo pip install git+https://github.com/casa-delle-coccinelle/rpi-sensors-exporter@v0.0.1
+
+Or with ansible role, available in https://github.com/casa-delle-coccinelle/ansible-role-rpi-sensors-exporter
+Start from the command line:
+
+    python -m rpi_sensors_exporter [-h] [-p PORT] [-c CONFIG_FILE] [-v] [-d]
+
+For more information on how to configure and use the package, please visit [docs](./docs) directory of the project.
 
 ### Examples
 As the setup is hard to reproduce, detailed description of the setup used during dev/test can be found in [examples](./examples) directory of the project. Included are:
