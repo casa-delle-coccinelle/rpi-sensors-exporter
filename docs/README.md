@@ -37,11 +37,28 @@ YAML formatted document with optional configuration for sensors connected to GPI
 | ads_devices | A list of dictionaries describing devices connected to the ADC (Analogue-Digital Converter) |list|No| 0.0.1 |
 | ads_devices.name | Name of the sensor |str|Yes| 0.0.1 |
 | ads_devices.type | Type of the sensor |str|Yes| 0.0.1 |
-| ads_devices.analog_in | Analogue input pin number of the ADC, should be netween 0 and 3 inclusive |int|Yes| 0.0.1 |
+| ads_devices.analog_in | Analogue input pin number of the ADC, should be between 0 and 3 inclusive |int|Yes| 0.0.1 |
 | ads_devices.max_value | The maximum of the values reported by ADC, will be used for percentage calculation of ads_devices.type metric (*see notes bellow*) |int|No| 0.0.1 |
 | ads_devices.min_value | The minimum of the values reported by ADC, will be used for percentage calculation of ads_devices.type metric (*see notes bellow*)|int |No| 0.0.1 |
 
-Validation of the configuration file is performed on boot and if it is not valid, an exeption will be raised. Example configuration file can be fount in [examples/config](../examples/config) directory of the project
+Validation of the configuration file is performed on boot and if it is not valid, an exception will be raised. Example of a valid configuration file for one rain drops sensor, connected on GPIO pin 26 and two different soil moisture sensors, connected to ADC is:
+
+    gpio_devices:
+      - name: "mh-rd"
+        type: "rain_drops"
+        pin: 26
+    ads_devices:
+      - name: "capacitive-v1.2"
+        type: "soil_moisture"
+        analog_in: 0
+        max_value: 32767
+        min_value: 23656
+      - name: "fc-28"
+        type: "soil_moisture"
+        analog_in: 1
+        max_value: 32767
+        min_value: 16726
+
 
 *Some notes on **ads_devices.max_value** and **ads_devices.min_value**:*
 
