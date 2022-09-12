@@ -10,10 +10,13 @@ class Metrics:
     sensor = None
 
     def __init__(self):
+        """ Initializes the sensor. """
+
         logger.debug('[BMP180] Initializing sensor')
         self.sensor = BMP085.BMP085(mode=BMP085.BMP085_ULTRAHIGHRES)
 
     def getSensorData(self):
+        """ Reads data from the sensor, returns temp, press, altitude, sea_press. """
 
         logger.debug('[BMP180] Reading sensor data')
         temp = self.sensor.read_temperature()
@@ -24,6 +27,7 @@ class Metrics:
         return (temp, press, altitude, sea_press)
     
     def getMetrics(self):
+        """ Populates the metrics with sensor data. """
 
         m_temp, m_press, m_altitude, m_sea_press = self.getSensorData()
         logger.debug('[BMP180] Populating metrics')

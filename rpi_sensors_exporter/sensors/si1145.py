@@ -10,16 +10,20 @@ class Metrics:
     sensor = None
 
     def __init__(self):
+        """ Initializes the sensor. """
 
         logger.debug('[SI1145] Initializing sensor')
         self.sensor = SI1145.SI1145(i2c_bus=1)
         self.sensor.readProx()
 
     def __del__(self):
+        """ Closes the communication bus. """
+
         self.sensor.close()
 
 
     def getSensorData(self):
+        """ Reads data from the sensor, returns vis, IR, unIndex """
 
         logger.debug('[SI1145] Reading sensor data')
         _vis = self.sensor.readVisible()
@@ -31,6 +35,7 @@ class Metrics:
     
     
     def getMetrics(self):
+        """ Populates the metrics with sensor data. """
     
         m_vis, m_IR, m_uvIndex = self.getSensorData()
         logger.debug('[SI1145] Populating metrics')

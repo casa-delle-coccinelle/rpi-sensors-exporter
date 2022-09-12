@@ -11,6 +11,7 @@ class Metrics:
     sensor = None
 
     def __init__(self):
+        """ Initializes the sensor. """
 
         logger.debug('[BH1750] Initializing sensor')
 
@@ -18,6 +19,7 @@ class Metrics:
         self.sensor = adafruit_bh1750.BH1750(self.i2c)
 
     def getSensorData(self):
+        """ Reads data from the sensor, returns light. """
 
         logger.debug('[BH1750] Reading sensor data')
         light = self.sensor.lux
@@ -25,6 +27,7 @@ class Metrics:
         return (light)
     
     def getMetrics(self):
+        """ Populates the metrics with sensor data. """
 
         m_light = self.getSensorData()
         logger.debug('[BH1750] Populating metrics')

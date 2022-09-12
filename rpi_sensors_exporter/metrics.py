@@ -6,6 +6,12 @@ logger = logging.getLogger("sensors_exporter")
 
 
 def initializeMetrics(sensor_type=None, metric_type=None):
+    """ Globally initializes Prometheus metrics, depending on the sensor type.
+
+    Keyword arguments:
+        sensor_type - (optional) The type of the sensor for which metrics should be initialized. Supported are bmp180, bme688, gpio, ads, bh1750 and si1145
+        metric_type - (optional) The metric type, provided by ads and gpio sensors. Will be used in metrics name
+    """
     global temperature
     global pressure
     global humidity 

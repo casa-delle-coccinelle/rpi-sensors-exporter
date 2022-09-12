@@ -11,6 +11,8 @@ class Metrics:
     sensor = None
 
     def __init__(self):
+        """ Initializes the sensor. """
+
         logger.debug('[BME688] Initializing sensor')
         try:
             self.sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
@@ -30,6 +32,7 @@ class Metrics:
 
 
     def getSensorData(self):
+        """ Reads data from the sensor, returns temp, press, humidity, gas_resistance. """
 
         logger.debug('[BME688] Reading sensor data')
         self.sensor.get_sensor_data()
@@ -48,6 +51,7 @@ class Metrics:
     
     
     def getMetrics(self):
+        """ Populates the metrics with sensor data. """
     
         m_temp, m_press, m_hum, m_gas = self.getSensorData()
         logger.debug('[BME688] Populating metrics')

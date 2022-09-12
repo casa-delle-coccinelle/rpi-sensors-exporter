@@ -12,20 +12,30 @@ class Metrics:
     sensor = None
 
     def __init__(self, name, analog_in, max_value=None, min_value=None):
+        """ Initializes the sensor.
+
+        Keyword arguments:
+            name - the name of the sensor, connected to ADC
+            analog_in - the number of anlogue input pin, where the sensor is connected to ADC
+            max_value - (optional) the maximum number expected on the pin. Will be used for percentage calculation.
+            min_value - (optional) the minimum number expected on the pin. Will be used for percentage calculation.
+        """
+
         self.name = name
         self.analog_in = analog_in
         self.max_value = max_value
         self.min_value = min_value
 
-        logger.debug(f'[ADS] Initializing sensor {self.name}')
+        logger.debug(f'[ADC] Initializing sensor {self.name}')
 
         self.i2c = board.I2C()
         self.ads = ADS.ADS1115(self.i2c)
         self.sensor = AnalogIn(self.ads, self.analog_in)
 
     def getSensorData(self):
+        """ Reads data from the sensor, returns voltage and value """
 
-        logger.debug(f'[ADS] Reading {self.name} sensor data')
+        logger.debug(f'[ADC] Reading {self.name} sensor data')
         voltage = self.sensor.voltage
         value = self.sensor.value
     
@@ -33,22 +43,24 @@ class Metrics:
     
     
     def calculatePercentage(self, value):
+        """ Calculates percentage, returns percent. """
     
         percent = round((self.max_value - value)*100/(self.max_value - self.min_value), 2)
         return percent
     
     
     def getMetrics(self):
+        """ Populates the metrics with sensor data. """
 
         m_voltage, m_value = self.getSensorData()
 
         if self.max_value and self.min_value:
-            logger.debug(f'[ADS] Calculating percentage metric for sensor {self.name}')
+            logger.debug(f'[ADC] Calculating percentage metric for sensor {self.name}')
             m_percentage = self.calculatePercentage(m_value)
 
-            logger.debug('[ADS] Populating metrics')
+            logger.debug('[ADC] Populating metrics')
             metrics.voltage.labels(self.name, 'adc').set(m_voltage), metrics.ads_value.labels(self.name, 'adc').set(m_value), metrics.percentage.labels(self.name, 'adc').set(m_percentage)
         else:
-            logger.debug('[ADS] Populating metrics')
+            logger.debug('[ADC] Populating metrics')
             metrics.voltage.labels(self.name, 'adc').set(m_voltage), metrics.ads_value.labels(self.name, 'adc').set(m_value)
     

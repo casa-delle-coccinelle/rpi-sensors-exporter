@@ -17,6 +17,7 @@ logger = logging.getLogger("sensors_exporter")
 
 @app.route("/metrics")
 def getSensors():
+    """ Tries to read data from each sensor. It is expected that not all sensors are connected to the system. """
     try:
         logger.debug('----------------BMP180-----------')
         logger.debug('Try read sensor data from BMP180')
@@ -126,6 +127,7 @@ def getSensors():
 
 
 def main():
+    """ Loads and sets configurations, starts the server """
     global config
 
     config_loader.logs_setup()

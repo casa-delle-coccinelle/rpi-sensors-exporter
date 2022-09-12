@@ -10,6 +10,7 @@ logger = logging.getLogger("sensors_exporter")
 
 
 def parse_args():
+    """ Parse command line arguments. """
 
     parser = argparse.ArgumentParser(prog="rpi_sensors_exporter", description='Raspberry Pi sensors exporter for Prometheus')
     parser.add_argument("-p", "--port", help="Port to run the exporter", type=int)
@@ -22,7 +23,8 @@ def parse_args():
 
 
 def logs_setup():
-    
+    """ Sets the log level depending on the provided arguments. """
+
     args = parse_args()
 
     logging.basicConfig(stream=sys.stdout, format='%(asctime)s [%(levelname)s] - %(name)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
@@ -35,6 +37,8 @@ def logs_setup():
 
 
 def load():
+    """ Loads exporter's configuration. """
+
     config = None
     port = None
 
@@ -73,6 +77,7 @@ def load():
 
 
 def validate(config):
+    """ Validates configuration file format. """
 
     schema = Schema(
             {
