@@ -1,0 +1,59 @@
+Sep 15 17:42:49 dev0 python[12866]: 09/15/2022 05:42:49 PM [INFO] - sensors_exporter - No configuration file is provided, checking environment
+Sep 15 17:42:49 dev0 python[12866]: 09/15/2022 05:42:49 PM [INFO] - sensors_exporter - A valid configuration file was found in environment, exporter will be started with configuration from file /etc/sensors-exporter/config.yaml
+Sep 15 17:42:49 dev0 python[12866]: 09/15/2022 05:42:49 PM [INFO] - sensors_exporter - Port 8080 was found in environment
+Sep 15 17:42:49 dev0 python[12866]: 09/15/2022 05:42:49 PM [DEBUG] - sensors_exporter - Initializing exporter info metric
+Sep 15 17:42:49 dev0 python[12866]: 09/15/2022 05:42:49 PM [DEBUG] - sensors_exporter - Exporter info metric initialized successfully
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - ----------------BMP180-----------
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Try read sensor data from BMP180
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - [BMP180] Initializing sensor
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [INFO] - sensors_exporter - Sensor type BMP180 is not connected to the system
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - ----------------BMP180-----------
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - ----------------BME688-----------
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Try read sensor data from BME688
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - [BME688] Initializing sensor
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [INFO] - sensors_exporter - Sensor type BME688 is connected to the system
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Initializing metrics for BME688 sensor
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Initializing temperature metric
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Temperature metric initialized successfully
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Initializing pressure metric
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Pressure metric initialized successfully
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Initializing air humidity metric
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Air humidity metric initialized successfully
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Initializing gas resistance metric
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Gas resistance metric initialized successfully
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - Getting sensor data
+Sep 15 17:43:32 dev0 python[12866]: 09/15/2022 05:43:32 PM [DEBUG] - sensors_exporter - [BME688] Reading sensor data
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - [BME688] Populating metrics
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - ----------------BME688-----------
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - ----------------GPIO-----------
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Try read sensor data from GPIO sensor mh-rd
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - [GPIO] Initializing sensor mh-rd
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [INFO] - sensors_exporter - GPIO sensor mh-rd is connected to the system
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Initializing metrics for GPIO sensor mh-rd
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Initializing rain_drops metric
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - rain_drops metric initialized successfully
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Getting sensor data
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - [GPIO] Reading mh-rd sensor data
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - [GPIO] Populating metrics
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - ----------------GPIO-----------
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - ----------------ADS-----------
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [INFO] - sensors_exporter - There are no ADS sensors connected to the system
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - ----------------ADS-----------
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - ----------------BH1750-----------
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Try read sensor data from BH1750
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - [BH1750] Initializing sensor
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [INFO] - sensors_exporter - Sensor type BH1750 is not connected to the system
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - ----------------BH1750-----------
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - ----------------LTR390-----------
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Try read sensor data from LTR390
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - [LTR390] Initializing sensor
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [INFO] - sensors_exporter - Sensor type LTR390 is connected to the system
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Initializing metrics for LTR390 sensor
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Initializing visible light metric
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Visible light metric initialized successfully
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Initializing UV index metric
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - UV index metric initialized successfully
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - Getting sensor data
+Sep 15 17:43:33 dev0 python[12866]: 09/15/2022 05:43:33 PM [DEBUG] - sensors_exporter - [LTR390] Reading sensor data
+Sep 15 17:43:34 dev0 python[12866]: 09/15/2022 05:43:34 PM [DEBUG] - sensors_exporter - [LTR390] Populating metrics
+Sep 15 17:43:34 dev0 python[12866]: 09/15/2022 05:43:34 PM [DEBUG] - sensors_exporter - ----------------LTR390-----------

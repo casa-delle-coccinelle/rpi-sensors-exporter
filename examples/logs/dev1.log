@@ -1,0 +1,62 @@
+Sep 15 17:46:12 dev1 python[5991]: 09/15/2022 05:46:12 PM [INFO] - sensors_exporter - No configuration file is provided, checking environment
+Sep 15 17:46:12 dev1 python[5991]: 09/15/2022 05:46:12 PM [INFO] - sensors_exporter - A valid configuration file was found in environment, exporter will be started with configuration from file /etc/sensors-exporter/config.yaml
+Sep 15 17:46:12 dev1 python[5991]: 09/15/2022 05:46:12 PM [INFO] - sensors_exporter - Port 8080 was found in environment
+Sep 15 17:46:12 dev1 python[5991]: 09/15/2022 05:46:12 PM [DEBUG] - sensors_exporter - Initializing exporter info metric
+Sep 15 17:46:12 dev1 python[5991]: 09/15/2022 05:46:12 PM [DEBUG] - sensors_exporter - Exporter info metric initialized successfully
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------BMP180-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Try read sensor data from BMP180
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [BMP180] Initializing sensor
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [INFO] - sensors_exporter - Sensor type BMP180 is connected to the system
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing metrics for BMP180 sensor
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing temperature metric
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Temperature metric initialized successfully
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing pressure metric
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Pressure metric initialized successfully
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing altitude metric
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Altitude metric initialized successfully
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing sealevel pressure metric
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Sealevel pressure metric initialized successfully
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [BMP180] Reading sensor data
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [BMP180] Populating metrics
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------BMP180-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------BME688-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Try read sensor data from BME688
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [BME688] Initializing sensor
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [INFO] - sensors_exporter - Sensor type BME688 is not connected to the system
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------BME688-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------GPIO-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [INFO] - sensors_exporter - There are no GPIO sensors connected to the system
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------GPIO-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------ADS-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Try read sensor data from ADS sensor capacitive-v1.2
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [ADC] Initializing sensor capacitive-v1.2
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Min and max values are configured for sensor capacitive-v1.2, percentage will be calculated
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [INFO] - sensors_exporter - ADS sensor capacitive-v1.2 is connected to the system
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing metrics for ADS sensor capacitive-v1.2
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing soil_moisture percent metric
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - soil_moisture percentage metric initialized successfully
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing soil_moisture voltage metric
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - soil_moisture voltage metric initialized successfully
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Initializing soil_moisture raw value metric
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - soil_moisture raw value metric initialized successfully
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Getting sensor data
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [ADC] Reading capacitive-v1.2 sensor data
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [ADC] Calculating percentage metric for sensor capacitive-v1.2
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [ADC] Populating metrics
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------ADS-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - ----------------BH1750-----------
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - Try read sensor data from BH1750
+Sep 15 17:46:44 dev1 python[5991]: 09/15/2022 05:46:44 PM [DEBUG] - sensors_exporter - [BH1750] Initializing sensor
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [INFO] - sensors_exporter - Sensor type BH1750 is connected to the system
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - Initializing metrics for BH1750 sensor
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - Initializing visible light metric
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - Visible light metric initialized successfully
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - Getting sensor data
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - [BH1750] Reading sensor data
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - [BH1750] Populating metrics
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - ----------------BH1750-----------
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - ----------------LTR390-----------
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - Try read sensor data from LTR390
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - [LTR390] Initializing sensor
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [INFO] - sensors_exporter - Sensor type LTR390 is not connected to the system
+Sep 15 17:46:45 dev1 python[5991]: 09/15/2022 05:46:45 PM [DEBUG] - sensors_exporter - ----------------LTR390-----------
