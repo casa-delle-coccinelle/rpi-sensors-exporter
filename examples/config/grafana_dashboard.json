@@ -59,7 +59,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
   "id": null,
-  "iteration": 1662021589419,
+  "iteration": 1663246802435,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -968,6 +968,10 @@
               {
                 "color": "#EAB839",
                 "value": 20
+              },
+              {
+                "color": "dark-green",
+                "value": 100
               }
             ]
           },
@@ -1110,103 +1114,13 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "visible_light_intensity_lux{job=\"$RPI\"}",
+          "expr": "ambient_light_intensity_lux{job=\"$RPI\"}",
           "interval": "",
           "legendFormat": "{{sensor}}",
           "refId": "A"
         }
       ],
       "title": "Visible Light Intensity - $RPI",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "light-red",
-            "mode": "fixed"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 30,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "lux"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 72
-      },
-      "id": 77,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull",
-            "min",
-            "max",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "repeat": "RPI",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "exemplar": true,
-          "expr": "ir_light_intensity_lux{job=\"$RPI\"}",
-          "interval": "",
-          "legendFormat": "{{sensor}}",
-          "refId": "A"
-        }
-      ],
-      "title": "IR Light Intensity - $RPI",
       "transparent": true,
       "type": "timeseries"
     }
@@ -1243,13 +1157,13 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "RPI Sensors",
   "uid": "m6CFhwP7k",
-  "version": 12,
+  "version": 14,
   "weekStart": ""
 }
