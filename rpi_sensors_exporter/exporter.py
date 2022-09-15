@@ -118,7 +118,7 @@ def getSensors():
         sensor.getMetrics()
         metrics.sensor_exporter_info.labels("ltr390", "i2c").set(1)
         logger.debug('----------------LTR390-----------')
-    except (OSError):
+    except (ValueError):
         logger.info('Sensor type LTR390 is not connected to the system')
         logger.debug('----------------LTR390-----------')
         pass
