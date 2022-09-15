@@ -23,8 +23,7 @@ def initializeMetrics(sensor_type=None, metric_type=None):
     global percentage
     global voltage
     global sensor_exporter_info
-    global vis_light
-    global ir_light
+    global amb_light
     global uv_index
 
     if not sensor_type:
@@ -126,23 +125,16 @@ def initializeMetrics(sensor_type=None, metric_type=None):
     elif sensor_type == "bh1750":
         try:
             logger.debug('Initializing visible light metric')
-            vis_light = Gauge("visible_light_intensity_lux", "Visible light intensity in lux", ['sensor', 'connection'])
+            amb_light = Gauge("ambient_light_intensity_lux", "Ambient light intensity in lux", ['sensor', 'connection'])
             logger.debug('Visible light metric initialized successfully')
         except (ValueError):
             logger.debug('Metric already initialized')
             pass
-    elif sensor_type == "si1145":
+    elif sensor_type == "ltr390":
         try:
             logger.debug('Initializing visible light metric')
-            vis_light = Gauge("visible_light_intensity_lux", "Visible light intensity in lux", ['sensor', 'connection'])
+            amb_light = Gauge("ambient_light_intensity_lux", "Ambient light intensity in lux", ['sensor', 'connection'])
             logger.debug('Visible light metric initialized successfully')
-        except (ValueError):
-            logger.debug('Metric already initialized')
-            pass
-        try:
-            logger.debug('Initializing infrared light metric')
-            ir_light = Gauge("ir_light_intensity_lux", "Infrared light intensity in lux", ['sensor', 'connection'])
-            logger.debug('Infrared light metric initialized successfully')
         except (ValueError):
             logger.debug('Metric already initialized')
             pass

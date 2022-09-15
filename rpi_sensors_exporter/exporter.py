@@ -6,7 +6,7 @@ from prometheus_client import make_wsgi_app
 from flask import Flask
 from waitress import serve
 
-from .sensors import bmp180, bme688, gpio, ads, bh1750, si1145
+from .sensors import bmp180, bme688, gpio, ads, bh1750, ltr390
 from . import metrics
 from . import config_loader
 
@@ -61,7 +61,7 @@ def getSensors():
             sensor.getMetrics()
             metrics.sensor_exporter_info.labels(device['name'], 'gpio').set(1)
         logger.debug('----------------GPIO-----------')
-    except (KeyError):
+    except (KeyError, AttributeError, TypeError):
         logger.info('There are no GPIO sensors connected to the system')
         logger.debug('----------------GPIO-----------')
         pass
@@ -86,7 +86,7 @@ def getSensors():
             sensor.getMetrics()
             metrics.sensor_exporter_info.labels(device['name'], 'adc').set(1)
             logger.debug('----------------ADS-----------')
-    except (KeyError):
+    except (KeyError, AttributeError, TypeError):
         logger.info('There are no ADS sensors connected to the system')
         logger.debug('----------------ADS-----------')
         pass
@@ -108,19 +108,19 @@ def getSensors():
         pass
 
     try:
-        logger.debug('----------------SI1145-----------')
-        logger.debug('Try read sensor data from SI1145')
-        sensor = si1145.Metrics()
-        logger.info('Sensor type SI1145 is connected to the system')
-        logger.debug('Initializing metrics for SI1145 sensor')
-        metrics.initializeMetrics("si1145")
+        logger.debug('----------------LTR390-----------')
+        logger.debug('Try read sensor data from LTR390')
+        sensor = ltr390.Metrics()
+        logger.info('Sensor type LTR390 is connected to the system')
+        logger.debug('Initializing metrics for LTR390 sensor')
+        metrics.initializeMetrics("ltr390")
         logger.debug('Getting sensor data')
         sensor.getMetrics()
-        metrics.sensor_exporter_info.labels("si1145", "i2c").set(1)
-        logger.debug('----------------SI1145-----------')
+        metrics.sensor_exporter_info.labels("ltr390", "i2c").set(1)
+        logger.debug('----------------LTR390-----------')
     except (OSError):
-        logger.info('Sensor type SI1145 is not connected to the system')
-        logger.debug('----------------SI1145-----------')
+        logger.info('Sensor type LTR390 is not connected to the system')
+        logger.debug('----------------LTR390-----------')
         pass
 
     return make_wsgi_app()

@@ -32,4 +32,4 @@ class Metrics:
         m_light = self.getSensorData()
         logger.debug('[BH1750] Populating metrics')
 
-        metrics.vis_light.labels("bh1750", "i2c").set(m_light)    
+        metrics.amb_light.labels("bh1750", "i2c").set(m_light)    
