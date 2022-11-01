@@ -26,11 +26,10 @@ Start from the command line:
 For more information on how to configure and use the package, please visit [docs](./docs) directory of the project.
 
 ### Examples
-As the setup is hard to reproduce, detailed description of the setup used during dev/test can be found in [examples](./examples) directory of the project. Included are:
+As the setup is hard to reproduce, detailed description of the setup used during dev/test can be found in [examples](./examples) directory of the project, including:
 * schematics and photos of the setup
 * sample dashboard for Grafana
 * screenshots of the dashboard with real data 
-* sample k8s manifests for Prometheus configuration
-* sample metrics, provided by the package
+* sample k8s manifests for Prometheus k8s operator configuration
 * sample logs of the package
 
