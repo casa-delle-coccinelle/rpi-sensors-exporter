@@ -2,8 +2,10 @@ During development, I've used two Raspberry Pi Zero W boards, named dev0 and dev
 ### Overview
 ![overview](./images/schematics/overview.png)
 ### dev0
+
 * dev0 schematics:
 ![dev0](./images/schematics/dev0.png)
+
 * dev0 wiring:
 ![dev0](./images/pictures/dev0_1.JPG)
 ![dev0](./images/pictures/dev0_2.JPG)
@@ -15,8 +17,10 @@ During development, I've used two Raspberry Pi Zero W boards, named dev0 and dev
 ![dev0](images/screenshots/dev0_metrics_sreenshot.png)
 
 ### dev1
+
 * dev1 schematics:
 ![dev1](./images/schematics/dev1.png)
+
 * dev1 wiring:
 ![dev1](./images/pictures/dev1_1.JPG)
 ![dev1](./images/pictures/dev1_2.JPG)
