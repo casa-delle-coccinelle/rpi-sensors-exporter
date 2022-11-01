@@ -20,7 +20,7 @@ The following environment variables are supported
 | Option |Default| Description |Required|Since version|
 |--|--|--|--|--|
 | SENSORS_EXPORTER_PORT |8080| The port number on which the exporter will run |No| 0.0.1 |
-| SENSORS_EXPORTER_CONFIG |N/A| Path to the exporter's configuration file (*please refer to "Configuration file format" section for more information*) |No |0.0.1|
+| SENSORS_EXPORTER_CONFIG |N/A| Path to the exporter's configuration file (*please refer to "Configuration file format" section bellow for more information*) |No |0.0.1|
 
 
 ### Configuration file format
