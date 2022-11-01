@@ -1,12 +1,14 @@
 During development, I've used two Raspberry Pi Zero W boards, named dev0 and dev1, connected to my home network and Prometheus stack installed in Kubernetes cluster in the same network.
 ### Overview
 ![overview](./images/schematics/overview.png)
-### dev0
 
+### dev0
 * dev0 schematics:
+
 ![dev0](./images/schematics/dev0.png)
 
 * dev0 wiring:
+
 ![dev0](./images/pictures/dev0_1.JPG)
 ![dev0](./images/pictures/dev0_2.JPG)
 ![dev0](./images/pictures/dev0_3.JPG)
@@ -14,14 +16,16 @@ During development, I've used two Raspberry Pi Zero W boards, named dev0 and dev
 ![dev0](./images/pictures/dev0_5.JPG)
 
 * dev0 metrics sreenshot:
-![dev0](images/screenshots/dev0_metrics_sreenshot.png)
+
+![dev0](./images/screenshots/dev0_metrics_sreenshot.png)
 
 ### dev1
-
 * dev1 schematics:
+
 ![dev1](./images/schematics/dev1.png)
 
 * dev1 wiring:
+
 ![dev1](./images/pictures/dev1_1.JPG)
 ![dev1](./images/pictures/dev1_2.JPG)
 ![dev1](./images/pictures/dev1_3.JPG)
@@ -30,7 +34,8 @@ During development, I've used two Raspberry Pi Zero W boards, named dev0 and dev
 ![dev1](./images/pictures/dev1_6.JPG)
 
 * dev1 metrics sreenshot:
-![dev1](images/screenshot/dev1_metrics_sreenshot.png)
+
+![dev1](./images/screenshots/dev1_metrics_sreenshot.png)
 
 ### Prometheus configuration
 dev0:
