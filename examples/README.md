@@ -34,7 +34,7 @@ During development, I've used two Raspberry Pi Zero W boards, named dev0 and dev
 * [dev1 sample logs](./logs/dev1.log)
 
 
-### Prometheus configuration
+### Prometheus k8s operator configuration
 dev0:
 * [endpoint](./config/dev0-endpoints.yaml)
 * [service](./config/dev0-service.yaml)
