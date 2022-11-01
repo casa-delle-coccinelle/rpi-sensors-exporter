@@ -46,7 +46,8 @@ dev1:
 * [serviceMonitor](./config/dev1-serviceMonitor.yaml)
 
 ### Grafana Dashboard
-[Sample Grafana dashboard](./config/grafana_dashboard.json)
+* [Sample Grafana dashboard](./config/grafana_dashboard.json)
+* Screenshots:
 
 ![grafana](./images/screenshots/dashboard_screenshot_1.png)
 ![grafana](./images/screenshots/dashboard_screenshot_2.png)
