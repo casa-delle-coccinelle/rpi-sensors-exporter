@@ -1,5 +1,3 @@
-# Documentation
-
 ### Configuration
 Supported are command line argument and environment variables for configuration. Command line arguments will take precedence over the environment variables. 
 * Command line
