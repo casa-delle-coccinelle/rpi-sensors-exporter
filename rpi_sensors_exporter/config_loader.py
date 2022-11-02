@@ -60,7 +60,6 @@ def load():
                 logger.info(f'A valid configuration file was found in environment, exporter will be started with configuration from file {f.name}')
         except (KeyError):
             logger.info('No configuration was found, assuming only I2C sensors are connected')
-            pass
         
     if args.port:
         logger.info(f'Port {args.port} is provided in command line')
@@ -71,7 +70,6 @@ def load():
             logger.info(f'Port {port} was found in environment')
         except (KeyError):
             logger.info('No port configuration found, will use the default one')
-            pass
 
     return port, config
 

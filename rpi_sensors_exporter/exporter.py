@@ -31,7 +31,6 @@ def getSensors():
     except (OSError):
         logger.info('Sensor type BMP180 is not connected to the system')
         logger.debug('----------------BMP180-----------')
-        pass
 
     try:
         logger.debug('----------------BME688-----------')
@@ -47,7 +46,6 @@ def getSensors():
     except (RuntimeError):
         logger.info('Sensor type BME688 is not connected to the system')
         logger.debug('----------------BME688-----------')
-        pass
 
     try:
         logger.debug('----------------GPIO-----------')
@@ -64,7 +62,6 @@ def getSensors():
     except (KeyError, AttributeError, TypeError):
         logger.info('There are no GPIO sensors connected to the system')
         logger.debug('----------------GPIO-----------')
-        pass
 
 
     try:
@@ -89,7 +86,6 @@ def getSensors():
     except (KeyError, AttributeError, TypeError):
         logger.info('There are no ADS sensors connected to the system')
         logger.debug('----------------ADS1115-----------')
-        pass
 
     try:
         logger.debug('----------------BH1750-----------')
@@ -105,7 +101,6 @@ def getSensors():
     except(ValueError):
         logger.info('Sensor type BH1750 is not connected to the system')
         logger.debug('----------------BH1750-----------')
-        pass
 
     try:
         logger.debug('----------------LTR390-----------')
@@ -121,7 +116,6 @@ def getSensors():
     except (ValueError):
         logger.info('Sensor type LTR390 is not connected to the system')
         logger.debug('----------------LTR390-----------')
-        pass
 
     return make_wsgi_app()
 
