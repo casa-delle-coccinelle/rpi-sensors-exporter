@@ -6,7 +6,7 @@ from prometheus_client import make_wsgi_app
 from flask import Flask
 from waitress import serve
 
-from .sensors import bmp180, bme688, gpio, ads, bh1750, ltr390
+from .sensors import bmp180, bme688, gpio, ads1115, bh1750, ltr390
 from . import metrics
 from . import config_loader
 
@@ -68,27 +68,27 @@ def getSensors():
 
 
     try:
-        logger.debug('----------------ADS-----------')
+        logger.debug('----------------ADS1115-----------')
         for device in config['ads_devices']:
-            logger.debug(f"Try read sensor data from ADS sensor {device['name']}")
+            logger.debug(f"Try read sensor data from ADS1115 sensor {device['name']}")
             try:
                 sensor = ads.Metrics(device['name'], device['analog_in'], device['max_value'], device['min_value'])
                 logger.debug(f"Min and max values are configured for sensor {device['name']}, percentage will be calculated")
-                logger.info(f"ADS sensor {device['name']} is connected to the system")
+                logger.info(f"ADS1115 sensor {device['name']} is connected to the system")
             except (KeyError):
                 sensor = ads.ADSMetrics(device['name'], device['analog_in'])
                 logger.debug(f"Min and max values are NOT configured for sensor {device['name']}, percentage will NOT be calculated")
-                logger.info(f"ADS sensor {device['name']} is connected to the system")
+                logger.info(f"ADS1115 sensor {device['name']} is connected to the system")
 
-            logger.debug(f"Initializing metrics for ADS sensor {device['name']}")
-            metrics.initializeMetrics("ads", device['type'])
+            logger.debug(f"Initializing metrics for ADS1115 sensor {device['name']}")
+            metrics.initializeMetrics("ads1115", device['type'])
             logger.debug('Getting sensor data')
             sensor.getMetrics()
             metrics.sensor_exporter_info.labels(device['name'], 'adc').set(1)
-            logger.debug('----------------ADS-----------')
+            logger.debug('----------------ADS1115-----------')
     except (KeyError, AttributeError, TypeError):
         logger.info('There are no ADS sensors connected to the system')
-        logger.debug('----------------ADS-----------')
+        logger.debug('----------------ADS1115-----------')
         pass
 
     try:

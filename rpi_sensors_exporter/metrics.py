@@ -9,8 +9,8 @@ def initializeMetrics(sensor_type=None, metric_type=None):
     """ Globally initializes Prometheus metrics, depending on the sensor type.
 
     Keyword arguments:
-        sensor_type - (optional) The type of the sensor for which metrics should be initialized. Supported are bmp180, bme688, gpio, ads, bh1750 and si1145
-        metric_type - (optional) The metric type, provided by ads and gpio sensors. Will be used in metrics name
+        sensor_type - (optional) The type of the sensor for which metrics should be initialized. Supported are bmp180, bme688, gpio, ads1115, bh1750 and si1145
+        metric_type - (optional) The metric type, provided by adc and gpio sensors. Will be used in metrics name
     """
     global temperature
     global pressure
@@ -100,7 +100,7 @@ def initializeMetrics(sensor_type=None, metric_type=None):
         except (ValueError):
             logger.debug('Metric already initialized')
             pass
-    elif sensor_type == "ads":
+    elif sensor_type == "ads1115":
         try:
             logger.debug(f'Initializing {metric_type} percent metric')
             percentage = Gauge(metric_type + "_percent", "Percentage of " + metric_type + " depending on calibration data (min_value and max_value)", ['sensor', 'connection'])
