@@ -13,7 +13,7 @@ def parse_args():
     """ Parse command line arguments. """
 
     parser = argparse.ArgumentParser(prog="rpi_sensors_exporter", description='Raspberry Pi sensors exporter for Prometheus')
-    parser.add_argument("-p", "--port", help="Port to run the exporter", type=int)
+    parser.add_argument("-p", "--port", help="Port to bind to", type=int)
     parser.add_argument("-c", "--config_file", help="Path to exporter's configuration file")
     parser.add_argument("-v", "--verbose", help="Enables INFO logs on stdout", action='store_true')
     parser.add_argument("-d", "--debug", help="Enables INFO and DEBUG logs on stdout", action='store_true')
