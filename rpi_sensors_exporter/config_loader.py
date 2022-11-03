@@ -4,7 +4,7 @@ import logging
 import sys
 
 import yaml
-from schema import Schema, And, Optional, SchemaError
+from schema import Schema, And, Optional, SchemaError, Hook
 
 logger = logging.getLogger("sensors_exporter")
 
@@ -50,6 +50,9 @@ def load():
             config = yaml.load(f, Loader=yaml.FullLoader)
             logger.info(f'Validating configurations in file {args.config_file}')
             validate(config)
+            logger.info(f'Configuration file format - OK')
+            data_check(config)
+            logger.info(f'Configuration file data - OK')
             logger.info(f'Validation is successful, exporter will be started with config from {args.config_file}')
     else:
         logger.info('No configuration file is provided, checking environment')
@@ -84,4 +87,49 @@ def validate(config):
                 })
 
     schema.validate(config)
+
+def data_check(config):
+    """ Validates configuration file data for ADS and GPIO devices """
+
+    gpio_devices_names = []
+    ads_devices_names = []
+
+    try:
+        for device in config['ads_devices']:
+            logger.debug(f"Validating configuration data for ADS sensor {device['name']}")
+            try:
+                if device['min_value'] >= device['max_value']:
+                    raise ValueError(f"min_value can not be bigger or equal to max_value for sensor {device['name']}")
+                else:
+                    logger.debug(f"min_value and max_value configuration for sensor {device['name']} is valid")
+
+            except (KeyError):
+                logger.debug(f"Min and max values are NOT configured for sensor {device['name']}, skipping values verification")
+    except (KeyError, AttributeError, TypeError):
+        logger.debug('There are no ADS sensors connected to the system, skipping values verification')
+
+    try:
+        logger.debug('Checking GPIO devices configuration')
+        for device in config['gpio_devices']:
+            gpio_devices_names.append(device['name'])
+        for device_name in gpio_devices_names:
+            if gpio_devices_names.count(device_name) > 1:
+                raise ValueError(f"{device_name} is NOT unique in GPIO devices config, please check your configuration")
+            else:
+                logger.debug(f"{device_name} is unique in GPIO devices config")
+    except (KeyError, AttributeError, TypeError):
+        logger.debug('There are no GPIO devices connected to the system, skipping type verification')
+
+    try:
+        logger.debug('Checking ADS devices configuration')
+        for device in config['ads_devices']:
+            ads_devices_names.append(device['name'])
+        for device_name in ads_devices_names:
+            if ads_devices_names.count(device_name) > 1:
+                raise ValueError(f"{device_name} is NOT unique in ADS devices config, please check your configuration")
+            else:
+                logger.debug(f"{device_name} is unique in ADS devices config")
+    except (KeyError, AttributeError, TypeError):
+        logger.debug('There are no ADS devices connected to the system, skipping type verification')
+
 
