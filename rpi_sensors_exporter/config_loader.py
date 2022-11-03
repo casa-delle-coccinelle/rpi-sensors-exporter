@@ -83,7 +83,7 @@ def validate(config):
     schema = Schema(
             {
                 Optional('gpio_devices'): [{'name': str, 'type': str, 'pin': And(int, lambda n: 0 <= n < 28, error='Pin number should be between 0 and 27')}],
-                Optional('ads_devices'): [{'name': str, 'type': str, 'analog_in': And(int, lambda n: 0 <= n < 4, error='Analog input number should be between 0 and 3'), Optional('max_value'): int, Optional('min_value'): int}]
+                Optional('ads_devices'): [{'name': str, 'type': str, 'analog_in': And(int, lambda n: 0 <= n < 4, error='Analog input number should be between 0 and 3'), Optional('max_value'): And(int, lambda n: n > 0, error='max_value should be above 0'), Optional('min_value'): And(int, lambda n: n > 0, error='min_value should be above 0')}]
                 })
 
     schema.validate(config)
@@ -93,20 +93,6 @@ def data_check(config):
 
     gpio_devices_names = []
     ads_devices_names = []
-
-    try:
-        for device in config['ads_devices']:
-            logger.debug(f"Validating configuration data for ADS sensor {device['name']}")
-            try:
-                if device['min_value'] >= device['max_value']:
-                    raise ValueError(f"min_value can not be bigger or equal to max_value for sensor {device['name']}")
-                else:
-                    logger.debug(f"min_value and max_value configuration for sensor {device['name']} is valid")
-
-            except (KeyError):
-                logger.debug(f"Min and max values are NOT configured for sensor {device['name']}, skipping values verification")
-    except (KeyError, AttributeError, TypeError):
-        logger.debug('There are no ADS sensors connected to the system, skipping values verification')
 
     try:
         logger.debug('Checking GPIO devices configuration')
@@ -132,4 +118,17 @@ def data_check(config):
     except (KeyError, AttributeError, TypeError):
         logger.debug('There are no ADS devices connected to the system, skipping type verification')
 
+    try:
+        for device in config['ads_devices']:
+            logger.debug(f"Validating configuration data for ADS sensor {device['name']}")
+            try:
+                if device['min_value'] >= device['max_value']:
+                    raise ValueError(f"min_value can not be bigger or equal to max_value for sensor {device['name']}")
+                else:
+                    logger.debug(f"min_value and max_value configuration for sensor {device['name']} is valid")
+
+            except (KeyError):
+                logger.debug(f"Min and max values are NOT configured for sensor {device['name']}, skipping values verification")
+    except (KeyError, AttributeError, TypeError):
+        logger.debug('There are no ADS sensors connected to the system, skipping values verification')
 
