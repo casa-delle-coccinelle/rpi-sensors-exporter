@@ -92,43 +92,44 @@ def data_check(config):
     """ Validates configuration file data for ADS and GPIO devices """
 
     gpio_devices_names = []
+    gpio_devices_pins = []
     ads_devices_names = []
 
     try:
         logger.debug('Checking GPIO devices configuration')
         for device in config['gpio_devices']:
             gpio_devices_names.append(device['name'])
+            gpio_devices_pins.append(device['pin'])
         for device_name in gpio_devices_names:
             if gpio_devices_names.count(device_name) > 1:
-                raise ValueError(f"{device_name} is NOT unique in GPIO devices config, please check your configuration")
+                raise ValueError(f'Device name {device_name} is NOT unique in GPIO devices config, please check your configuration')
             else:
-                logger.debug(f"{device_name} is unique in GPIO devices config")
+                logger.debug(f'Device name {device_name} is unique in GPIO devices config')
+        for device_pin in gpio_devices_pins:
+            if gpio_devices_pins.count(device_pin) > 1:
+                raise ValueError(f'PIN {device_pin} is NOT unique in GPIO devices config, please check your configuration')
+            else:
+                logger.debug(f'PIN {device_pin} is unique in GPIO devices config')
     except (KeyError, AttributeError, TypeError):
-        logger.debug('There are no GPIO devices connected to the system, skipping type verification')
+        logger.debug('There is no configuration provided for GPIO devices, skipping verification')
 
     try:
         logger.debug('Checking ADS devices configuration')
         for device in config['ads_devices']:
-            ads_devices_names.append(device['name'])
-        for device_name in ads_devices_names:
-            if ads_devices_names.count(device_name) > 1:
-                raise ValueError(f"{device_name} is NOT unique in ADS devices config, please check your configuration")
-            else:
-                logger.debug(f"{device_name} is unique in ADS devices config")
-    except (KeyError, AttributeError, TypeError):
-        logger.debug('There are no ADS devices connected to the system, skipping type verification')
-
-    try:
-        for device in config['ads_devices']:
             logger.debug(f"Validating configuration data for ADS sensor {device['name']}")
+            ads_devices_names.append(device['name'])
             try:
                 if device['min_value'] >= device['max_value']:
                     raise ValueError(f"min_value can not be bigger or equal to max_value for sensor {device['name']}")
                 else:
                     logger.debug(f"min_value and max_value configuration for sensor {device['name']} is valid")
-
             except (KeyError):
                 logger.debug(f"Min and max values are NOT configured for sensor {device['name']}, skipping values verification")
+        for device_name in ads_devices_names:
+            if ads_devices_names.count(device_name) > 1:
+                raise ValueError(f'{device_name} is NOT unique in ADS devices config, please check your configuration')
+            else:
+                logger.debug(f'{device_name} is unique in ADS devices config')
     except (KeyError, AttributeError, TypeError):
-        logger.debug('There are no ADS sensors connected to the system, skipping values verification')
+        logger.debug('There no configuration provided for ADS devices, skipping verification')
 

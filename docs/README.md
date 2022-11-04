@@ -29,12 +29,12 @@ YAML formatted document with optional configuration for sensors connected to GPI
 | Configuration | Description |Type|Required|Since version|
 |--|--|--|--|--|
 | gpio_devices | A list of dictionaries describing GPIO devices connected to the system |list|No| 0.0.1 |
-| gpio_devices.name | Name of the sensor, will be added as sensor={name} label to the metrics  |str|Yes| 0.0.1 |
-| gpio_devices.type | Type of the sensor, will be used as is for metric name. If multiple devices are connected to different GPIO pins, make sure that the type is unique. |str|Yes| 0.0.1 |
-| gpio_devices.pin | GPIO pin on which the sensor is connected to the system, should be between 0 and 27 inclusive |int|Yes| 0.0.1 |
+| gpio_devices.name | Name of the sensor, will be added as sensor={name} label to the metrics.  If multiple devices are connected to different GPIO pins, make sure that the name is unique. The exporter performs name uniqueness check and will fail to start if this criteria is not met. |str|Yes| 0.0.1 |
+| gpio_devices.type | Type of the sensor, will be used as is for metric name. |str|Yes| 0.0.1 |
+| gpio_devices.pin | GPIO pin on which the sensor is connected to the system, should be between 0 and 27 inclusive and unique for each sensor. The exporter performs PIN uniqueness check and will fail to start if this criteria is not met. |int|Yes| 0.0.1 |
 | ads_devices | A list of dictionaries describing devices connected to the ADC (Analogue-Digital Converter) |list|No| 0.0.1 |
-| ads_devices.name | Name of the sensor, will be added as sensor={name} label to the metrics |str|Yes| 0.0.1 |
-| ads_devices.type | Type of the sensor, will be used in metrics name construction - {type}_value, {type}_voltage and {type}_percentage. If multiple devices are connected to different ADS inputs, make sure that the type is unique. |str|Yes| 0.0.1 |
+| ads_devices.name | Name of the sensor, will be added as sensor={name} label to the metrics. If multiple devices are connected to different ADS inputs, make sure that the name is unique. The exporter performs name uniqueness check and will fail to start if this criteria is not met. |str|Yes| 0.0.1 |
+| ads_devices.type | Type of the sensor, will be used in metrics name construction - {type}_value, {type}_voltage and {type}_percentage. |str|Yes| 0.0.1 |
 | ads_devices.analog_in | Analogue input pin number of the ADC, should be between 0 and 3 inclusive |int|Yes| 0.0.1 |
 | ads_devices.max_value | The maximum of the values reported by ADC, will be used for percentage calculation of ads_devices.type metric (*see notes bellow*) |int|No| 0.0.1 |
 | ads_devices.min_value | The minimum of the values reported by ADC, will be used for percentage calculation of ads_devices.type metric (*see notes bellow*)|int |No| 0.0.1 |
