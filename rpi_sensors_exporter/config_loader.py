@@ -4,7 +4,7 @@ import logging
 import sys
 
 import yaml
-from schema import Schema, And, Optional, SchemaError, Hook
+from schema import Schema, And, Optional, SchemaError
 
 logger = logging.getLogger("sensors_exporter")
 
