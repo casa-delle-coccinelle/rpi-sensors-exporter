@@ -60,6 +60,9 @@ def load():
             with open(os.environ['SENSORS_EXPORTER_CONFIG']) as f:
                 config = yaml.load(f, Loader=yaml.FullLoader)
                 validate(config)
+                logger.info(f'Configuration file format - OK')
+                data_check(config)
+                logger.info(f'Configuration file data - OK')
                 logger.info(f'A valid configuration file was found in environment, exporter will be started with configuration from file {f.name}')
         except (KeyError):
             logger.info('No configuration was found, assuming only I2C sensors are connected')
