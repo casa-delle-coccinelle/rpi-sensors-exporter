@@ -69,11 +69,11 @@ def getSensors():
         for device in config['ads_devices']:
             logger.debug(f"Try read sensor data from ADS1115 sensor {device['name']}")
             try:
-                sensor = ads.Metrics(device['name'], device['analog_in'], device['max_value'], device['min_value'])
+                sensor = ads1115.Metrics(device['name'], device['analog_in'], device['max_value'], device['min_value'])
                 logger.debug(f"Min and max values are configured for sensor {device['name']}, percentage will be calculated")
                 logger.info(f"ADS1115 sensor {device['name']} is connected to the system")
             except (KeyError):
-                sensor = ads.ADSMetrics(device['name'], device['analog_in'])
+                sensor = ads1115.ADSMetrics(device['name'], device['analog_in'])
                 logger.debug(f"Min and max values are NOT configured for sensor {device['name']}, percentage will NOT be calculated")
                 logger.info(f"ADS1115 sensor {device['name']} is connected to the system")
 
