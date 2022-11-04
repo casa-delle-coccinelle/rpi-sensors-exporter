@@ -8,7 +8,6 @@ setup(name='rpi_sensors_exporter',
       url='https://github.com/casa-delle-coccinelle/rpi-sensors-exporter/',
       license = 'MIT',
       install_requires=[
-          'adafruit_ads1x15>=1.0.2', 
           'Adafruit_Blinka>=7.1.1', 
           'Adafruit_BMP @ git+https://github.com/adafruit/Adafruit_Python_BMP@1.5.4#egg=Adafruit_BMP', 
           'adafruit_circuitpython_ads1x15>=2.2.12', 
