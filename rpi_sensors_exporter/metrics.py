@@ -2,8 +2,6 @@ import logging
 
 from prometheus_client import Gauge
 
-logger = logging.getLogger("sensors_exporter")
-
 
 def initializeMetrics(sensor_type=None, metric_type=None):
     """ Globally initializes Prometheus metrics, depending on the sensor type.
@@ -25,6 +23,8 @@ def initializeMetrics(sensor_type=None, metric_type=None):
     global sensor_exporter_info
     global amb_light
     global uv_index
+
+    logger = logging.getLogger(__name__)
 
     if not sensor_type:
         try:

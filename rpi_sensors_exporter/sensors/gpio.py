@@ -4,7 +4,6 @@ from gpiozero import InputDevice
 
 from .. import metrics
 
-logger = logging.getLogger("sensors_exporter")
 
 class Metrics:
     sensor = None
@@ -20,7 +19,8 @@ class Metrics:
         self.name = name
         self.pin = pin
 
-        logger.debug(f'[GPIO] Initializing sensor {self.name}')
+        self.logger = logging.getLogger(__name__)
+        self.logger.debug(f'Initializing sensor {self.name}')
         self.sensor = InputDevice(self.pin)
 
     def __del__(self):
@@ -31,7 +31,7 @@ class Metrics:
     def getSensorData(self):
         """ Reads data from the sensor, returns value """
 
-        logger.debug(f'[GPIO] Reading {self.name} sensor data')
+        self.logger.debug(f'Reading {self.name} sensor data')
         value = self.sensor.value
     
         return value
@@ -40,7 +40,7 @@ class Metrics:
         """ Populates the metrics with sensor data. """
 
         m_value = self.getSensorData()
-        logger.debug('[GPIO] Populating metrics')
+        self.logger.debug('Populating metrics')
 
         metrics.gpio_value.labels(self.name, 'gpio').set(m_value)
     

@@ -5,7 +5,6 @@ import adafruit_bh1750
 
 from .. import metrics
 
-logger = logging.getLogger("sensors_exporter")
 
 class Metrics:
     sensor = None
@@ -13,7 +12,8 @@ class Metrics:
     def __init__(self):
         """ Initializes the sensor. """
 
-        logger.debug('[BH1750] Initializing sensor')
+        self.logger = logging.getLogger(__name__)
+        self.logger.debug('Initializing sensor')
 
         self.i2c = board.I2C()
         self.sensor = adafruit_bh1750.BH1750(self.i2c)
@@ -21,7 +21,7 @@ class Metrics:
     def getSensorData(self):
         """ Reads data from the sensor, returns light. """
 
-        logger.debug('[BH1750] Reading sensor data')
+        self.logger.debug('Reading sensor data')
         light = self.sensor.lux
     
         return (light)
@@ -30,6 +30,6 @@ class Metrics:
         """ Populates the metrics with sensor data. """
 
         m_light = self.getSensorData()
-        logger.debug('[BH1750] Populating metrics')
+        self.logger.debug('Populating metrics')
 
         metrics.amb_light.labels("bh1750", "i2c").set(m_light)    

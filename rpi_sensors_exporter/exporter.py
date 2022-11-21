@@ -12,7 +12,7 @@ from . import config_loader
 
 app = Flask("sensors_exporter")
 
-logger = logging.getLogger("sensors_exporter")
+logger = logging.getLogger(__name__)
 
 
 @app.route("/metrics")

@@ -6,7 +6,7 @@ import sys
 import yaml
 from schema import Schema, And, Optional, SchemaError
 
-logger = logging.getLogger("sensors_exporter")
+logger = logging.getLogger(__name__)
 
 
 def parse_args():
@@ -26,6 +26,7 @@ def logs_setup():
     """ Sets the log level depending on the provided arguments. """
 
     args = parse_args()
+    logger = logging.getLogger(__name__.split('.')[0])
 
     logging.basicConfig(stream=sys.stdout, format='%(asctime)s [%(levelname)s] - %(name)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 

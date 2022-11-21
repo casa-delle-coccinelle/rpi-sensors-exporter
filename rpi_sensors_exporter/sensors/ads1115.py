@@ -6,7 +6,6 @@ from adafruit_ads1x15.analog_in import AnalogIn
 
 from .. import metrics
 
-logger = logging.getLogger("sensors_exporter")
 
 class Metrics:
     sensor = None
@@ -26,7 +25,9 @@ class Metrics:
         self.max_value = max_value
         self.min_value = min_value
 
-        logger.debug(f'[ADS1115] Initializing sensor {self.name}')
+        self.logger = logging.getLogger(__name__)
+
+        self.logger.debug(f'Initializing sensor {self.name}')
 
         self.i2c = board.I2C()
         self.ads = ADS.ADS1115(self.i2c)
@@ -35,7 +36,7 @@ class Metrics:
     def getSensorData(self):
         """ Reads data from the sensor, returns voltage and value """
 
-        logger.debug(f'[ADS1115] Reading {self.name} sensor data')
+        self.logger.debug(f'Reading {self.name} sensor data')
         voltage = self.sensor.voltage
         value = self.sensor.value
     
@@ -55,12 +56,12 @@ class Metrics:
         m_voltage, m_value = self.getSensorData()
 
         if self.max_value and self.min_value:
-            logger.debug(f'[ADS1115] Calculating percentage metric for sensor {self.name}')
+            self.logger.debug(f'Calculating percentage metric for sensor {self.name}')
             m_percentage = self.calculatePercentage(m_value)
 
-            logger.debug('[ADS111] Populating metrics')
+            self.logger.debug('Populating metrics')
             metrics.voltage.labels(self.name, 'adc').set(m_voltage), metrics.ads_value.labels(self.name, 'adc').set(m_value), metrics.percentage.labels(self.name, 'adc').set(m_percentage)
         else:
-            logger.debug('[ADS1115] Populating metrics')
+            self.logger.debug('Populating metrics')
             metrics.voltage.labels(self.name, 'adc').set(m_voltage), metrics.ads_value.labels(self.name, 'adc').set(m_value)
     
