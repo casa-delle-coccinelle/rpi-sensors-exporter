@@ -1,0 +1,15 @@
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: dev1
+  namespace: rpi-sensors
+  labels:
+    device: dev1
+    type: external
+subsets:
+  - addresses:
+      - ip: 172.16.0.115
+    ports:
+      - name: metrics
+        port: 8080

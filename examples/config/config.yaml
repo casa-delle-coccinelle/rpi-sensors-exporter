@@ -1,0 +1,15 @@
+gpio_devices:
+  - name: "mh-rd"
+    type: "rain_drops"
+    pin: 26
+ads_devices:
+  - name: "capacitive-v1.2"
+    type: "soil_moisture"
+    analog_in: 0
+    max_value: 32767
+    min_value: 23656
+  - name: "fc-28"
+    type: "soil_moisture"
+    analog_in: 1
+    max_value: 32767
+    min_value: 16726

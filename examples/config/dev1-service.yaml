@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dev1
+  namespace: rpi-sensors
+  labels:
+    device: dev1
+    type: external
+spec:
+  type: 
+  ports:
+    - name: metrics
+      port: 8080
+      targetPort: 8080
