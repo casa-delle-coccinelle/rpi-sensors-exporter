@@ -14,6 +14,7 @@ setup(name='rpi_sensors_exporter',
           'adafruit_circuitpython_bh1750>=1.0.7', 
           'adafruit-circuitpython-ltr390>=1.1.10',
           'adafruit-circuitpython-sht4x>=1.0.15',
+          'adafruit-circuitpython-sht31d>=2.3.20'
           'bme680>=1.1.1', 
           'Flask>=2.0.3', 
           'gpiozero>=1.6.2', 

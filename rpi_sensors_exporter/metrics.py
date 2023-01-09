@@ -71,6 +71,19 @@ def initializeMetrics(sensor_type=None, metric_type=None):
             logger.debug('Air humidity metric initialized successfully')
         except (ValueError):
             logger.debug('Metric already initialized')
+    elif sensor_type == "sht31d":
+        try:
+            logger.debug('Initializing temperature metric')
+            temperature = Gauge("temperature_celsius", "Temperature in celsius", ['sensor', 'connection'])
+            logger.debug('Temperature metric initialized successfully')
+        except (ValueError):
+            logger.debug('Metric already initialized')
+        try:
+            logger.debug('Initializing air humidity metric')
+            humidity = Gauge("air_humidity_percent", "Air humidity, %", ['sensor', 'connection'])
+            logger.debug('Air humidity metric initialized successfully')
+        except (ValueError):
+            logger.debug('Metric already initialized')
     elif sensor_type == "bmp180":
         try:
             logger.debug('Initializing temperature metric')
