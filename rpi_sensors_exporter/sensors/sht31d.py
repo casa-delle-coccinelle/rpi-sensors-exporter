@@ -17,7 +17,7 @@ class Metrics:
 
         self.i2c = board.I2C()
         try:
-            self.logger.debug('Try sensor address 0x44')
+            self.logger.debug('Try default sensor address 0x44')
             self.sensor = adafruit_sht31d.SHT31D(self.i2c)
             self.logger.debug('Sensor uses address 0x44')
         except (OSError, ValueError):
