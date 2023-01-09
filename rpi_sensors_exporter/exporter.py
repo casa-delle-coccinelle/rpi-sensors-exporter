@@ -6,7 +6,7 @@ from prometheus_client import make_wsgi_app
 from flask import Flask
 from waitress import serve
 
-from .sensors import bmp180, bme688, gpio, ads1115, bh1750, ltr390
+from .sensors import bmp180, bme688, gpio, ads1115, bh1750, ltr390, sht40
 from . import metrics
 from . import config_loader
 
@@ -46,7 +46,20 @@ def getSensors():
     except (RuntimeError):
         logger.info('Sensor type BME688 is not connected to the system')
         logger.debug('----------------BME688-----------')
-
+    try:
+        logger.debug('----------------SHT40-----------')
+        logger.debug('Try read sensor data from SHT40')
+        sensor = sht40.Metrics()
+        logger.info('Sensor type SHT40 is connected to the system')
+        logger.debug('Initializing metrics for SHT40 sensor')
+        metrics.initializeMetrics("sht40")
+        logger.debug('Getting sensor data')
+        sensor.getMetrics()
+        metrics.sensor_exporter_info.labels("sht40", "i2c").set(1)
+        logger.debug('----------------SHT40-----------')
+    except (ValueError):
+        logger.info('Sensor type SHT40 is not connected to the system')
+        logger.debug('----------------SHT40-----------')
     try:
         logger.debug('----------------GPIO-----------')
         for device in config['gpio_devices']:
