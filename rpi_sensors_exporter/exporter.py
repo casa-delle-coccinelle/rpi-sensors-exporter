@@ -6,7 +6,7 @@ from prometheus_client import make_wsgi_app
 from flask import Flask
 from waitress import serve
 
-from .sensors import bmp180, bme688, gpio, ads1115, bh1750, ltr390, sht40, sht31d
+from .sensors import bmp180, bme688, gpio, ads1115, bh1750, ltr390, sht40, sht31d, htu31d
 from . import metrics
 from . import config_loader
 
@@ -74,6 +74,20 @@ def getSensors():
     except (ValueError):
         logger.info('Sensor type SHT31D is not connected to the system')
         logger.debug('----------------SHT31D-----------')
+    try:
+        logger.debug('----------------HTU31D-----------')
+        logger.debug('Try read sensor data from HTU31D')
+        sensor = htu31d.Metrics()
+        logger.info('Sensor type HTU31D is connected to the system')
+        logger.debug('Initializing metrics for HTU31D sensor')
+        metrics.initializeMetrics("htu31d")
+        logger.debug('Getting sensor data')
+        sensor.getMetrics()
+        metrics.sensor_exporter_info.labels("htu31d", "i2c").set(1)
+        logger.debug('----------------HTU31D-----------')
+    except (ValueError):
+        logger.info('Sensor type HTU31D is not connected to the system')
+        logger.debug('----------------HTU31D-----------')
     try:
         logger.debug('----------------GPIO-----------')
         for device in config['gpio_devices']:
