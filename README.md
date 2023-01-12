@@ -6,6 +6,9 @@ Just for fun/learning python project which exports sensor data from various Rasp
 Currently supported sensors are:
 * BMP180 Barometric Pressure/Temperature/Altitude Sensor - https://www.adafruit.com/product/1603
 * BME688 Temperature, Humidity, Pressure and Gas Sensor - https://www.adafruit.com/product/5046
+* HTU31D Temperature and Humidity Sensor - https://www.adafruit.com/product/4832
+* SHT31D Temperature and Humidity Sensor - https://www.adafruit.com/product/2857
+* SHT40 Temperature and Humidity Sensor - https://www.adafruit.com/product/4885
 * BH1750 Ambient Light Sensor - https://learn.adafruit.com/adafruit-bh1750-ambient-light-sensor
 * LTR390 UV Sensor - https://learn.adafruit.com/adafruit-ltr390-uv-sensor/overview-2
 * ADS1115 16-Bit ADC to connect sensors of different types which provide analog data - https://www.adafruit.com/product/1085 (tested with two soil moisture sensors - Capacitive v1.2 (https://www.amazon.com/Gikfun-Capacitive-Corrosion-Resistant-Detection/dp/B07H3P1NRM) and fc-28 (https://www.amazon.in/xcluma-Moisture-Humidity-Arduino-Respberry/dp/B071LH5Z9D ))
