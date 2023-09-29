@@ -5,7 +5,7 @@ import sys
 
 import yaml
 
-from typing import Dict, Callable
+from typing import List, Dict, Callable
 from schema import Schema, And, Optional, SchemaError
 
 logger = logging.getLogger(__name__)
@@ -83,7 +83,8 @@ def validate(config: Dict, conf_fpath: str = ""):
                     )
                 }
             ]
-        })
+        }
+    )
 
     logger.info(f'Validating configurations in file {conf_fpath}')
     try:
@@ -94,7 +95,7 @@ def validate(config: Dict, conf_fpath: str = ""):
 
 
 def unique_item_check(
-    items: list[str],
+    items: List,
     err_message: str,
     ok_message: str,
     exception: Callable = ValueError,
@@ -122,7 +123,7 @@ def gpio_names_check(device_names: list[str]):
     )
 
 
-def gpio_pins_check(device_pins: list[str]):
+def gpio_pins_check(device_pins: list[int]):
     """ Check if GPIO device pins are unique """
     unique_item_check(
         device_pins,
@@ -176,31 +177,37 @@ def ads_names_check(device_names: list[str]):
     )
 
 
-def ads_check_device(device: Dict) -> str:
+def ads_inputs_check(device_inputs: list[str]):
+    """ Check if ADS device inputs are unique """
+    unique_item_check(
+        device_inputs,
+        'Device input {} is NOT unique in ADS devices config, please check your configuration',
+        'Device input {} is unique in ADS devices config',
+    )
+
+
+def ads_check_device(device: Dict) -> tuple[str, int]:
     """ Checks ADS dev """
-    if isinstance(device, dict):
-        if any([
-            'name' not in device,
-            'input' not in device,
-        ]):
-            raise ValueError(
-                f"ADS Device {device} missconfigured"
-            )
-        if any([
-            'min_value' not in device,
-            'max_value' not in device,
-        ]):
-            logger.debug(
-                f"Min and max values are NOT configured for sensor {device['name']}, skipping values verification"
-            )
-        elif device['min_value'] >= device['max_value']:
-            raise ValueError(
-                f"min_value can not be bigger or equal to max_value for sensor {device['name']}"
-            )
-        logger.debug(
-            f"min_value and max_value configuration for sensor {device['name']} is valid"
+    if not isinstance(device, dict):
+        raise ValueError(
+            f"Device {device} of incorrect type. Expected dict, got {type(device)}"
         )
-    return device['name']
+    if any([
+        'min_value' not in device,
+        'max_value' not in device,
+    ]):
+        logger.debug(
+            f"Min and max values are NOT configured for sensor {device['name']}, skipping values verification"
+        )
+        return device['name'], device['analog_in']
+    if device['min_value'] >= device['max_value']:
+        raise ValueError(
+            f"min_value can not be bigger or equal to max_value for sensor {device['name']}"
+        )
+    logger.debug(
+        f"min_value and max_value configuration for sensor {device['name']} is valid"
+    )
+    return device['name'], device['analog_in']
 
 
 def ads_dev_check(config: Dict):
@@ -212,7 +219,8 @@ def ads_dev_check(config: Dict):
 
     logger.debug('Checking ADS devices configuration')
 
-    ads_devices_names = []
+    ads_device_names = []
+    ads_device_inputs = []
 
     if 'ads_devices' not in config:
         logger.debug(
@@ -222,10 +230,13 @@ def ads_dev_check(config: Dict):
 
     for device in config['ads_devices']:
         try:
-            ads_devices_names.append(ads_dev_check(device))
+            dev_name, dev_in = ads_check_device(device)
         except (ValueError) as exc:
             raise ValueError("ADS Devices missconfigured.") from exc
-    ads_names_check(device_names=ads_devices_names)
+        ads_device_names.append(dev_name)
+        ads_device_inputs.append(dev_in)
+    ads_names_check(device_names=ads_device_names)
+    ads_inputs_check(device_inputs=ads_device_inputs)
 
 
 def data_check(config: Dict):
@@ -281,7 +292,7 @@ def load() -> tuple[int, Dict]:
 
     try:
         port = int(args.port)
-    except (ValueError) as exc:
+    except (ValueError, TypeError) as exc:
         logger.error(f'Port {args.port} is not a valid port number, will use default')
         logger.error(exc)
         port = 0
