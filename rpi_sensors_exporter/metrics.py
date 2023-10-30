@@ -12,7 +12,7 @@ def initializeMetrics(sensor_type=None, metric_type=None):
     """
     global temperature
     global pressure
-    global humidity 
+    global humidity
     global gas_resistance
     global altitude
     global sealevel
@@ -110,7 +110,7 @@ def initializeMetrics(sensor_type=None, metric_type=None):
             logger.debug('Pressure metric initialized successfully')
         except (ValueError):
             logger.debug('Metric already initialized')
-        try:  
+        try:
             logger.debug('Initializing altitude metric')
             altitude = Gauge("altitude_meters", "Altitude in meters", ['sensor', 'connection'])
             logger.debug('Altitude metric initialized successfully')
@@ -168,4 +168,3 @@ def initializeMetrics(sensor_type=None, metric_type=None):
             logger.debug('UV index metric initialized successfully')
         except (ValueError):
             logger.debug('Metric already initialized')
-

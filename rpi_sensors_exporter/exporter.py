@@ -1,23 +1,31 @@
-import os
 import logging
-import sys
 
-from prometheus_client import make_wsgi_app
-from flask import Flask
-from waitress import serve
+from time import sleep
 
-from .sensors import bmp180, bme688, gpio, ads1115, bh1750, ltr390, sht40, sht31d, htu31d
+from prometheus_client import start_wsgi_server
+
+from .sensors import (
+    bmp180,
+    bme688,
+    gpio,
+    ads1115,
+    bh1750,
+    ltr390,
+    sht40,
+    sht31d,
+    htu31d
+)
 from . import metrics
 from . import config_loader
-
-app = Flask("sensors_exporter")
 
 logger = logging.getLogger(__name__)
 
 
-@app.route("/metrics")
 def getSensors():
-    """ Tries to read data from each sensor. It is expected that not all sensors are connected to the system. """
+    """
+    Tries to read data from each sensor. It is expected that not all sensors are connected to the system.
+    """
+
     try:
         logger.debug('----------------BMP180-----------')
         logger.debug('Try read sensor data from BMP180')
@@ -91,10 +99,13 @@ def getSensors():
     try:
         logger.debug('----------------GPIO-----------')
         for device in config['gpio_devices']:
-            logger.debug(f"Try read sensor data from GPIO sensor {device['name']}")
+            logger.debug(
+                f"Try read sensor data from GPIO sensor {device['name']}")
             sensor = gpio.Metrics(device['name'], device['pin'])
-            logger.info(f"GPIO sensor {device['name']} is connected to the system")
-            logger.debug(f"Initializing metrics for GPIO sensor {device['name']}")
+            logger.info(
+                f"GPIO sensor {device['name']} is connected to the system")
+            logger.debug(
+                f"Initializing metrics for GPIO sensor {device['name']}")
             metrics.initializeMetrics("gpio", device['type'])
             logger.debug('Getting sensor data')
             sensor.getMetrics()
@@ -104,21 +115,28 @@ def getSensors():
         logger.info('There are no GPIO sensors connected to the system')
         logger.debug('----------------GPIO-----------')
 
-
     try:
         logger.debug('----------------ADS1115-----------')
         for device in config['ads_devices']:
-            logger.debug(f"Try read sensor data from ADS1115 sensor {device['name']}")
+            logger.debug(
+                f"Try read sensor data from ADS1115 sensor {device['name']}")
             try:
-                sensor = ads1115.Metrics(device['name'], device['analog_in'], device['max_value'], device['min_value'])
-                logger.debug(f"Min and max values are configured for sensor {device['name']}, percentage will be calculated")
-                logger.info(f"ADS1115 sensor {device['name']} is connected to the system")
+                sensor = ads1115.Metrics(
+                    device['name'], device['analog_in'], device['max_value'], device['min_value'])
+                logger.debug(
+                    f"Min and max values are configured for sensor {device['name']}, percentage will be calculated")
+                logger.info(
+                    f"ADS1115 sensor {device['name']} is connected to the system")
             except (KeyError):
-                sensor = ads1115.ADSMetrics(device['name'], device['analog_in'])
-                logger.debug(f"Min and max values are NOT configured for sensor {device['name']}, percentage will NOT be calculated")
-                logger.info(f"ADS1115 sensor {device['name']} is connected to the system")
+                sensor = ads1115.ADSMetrics(
+                    device['name'], device['analog_in'])
+                logger.debug(
+                    f"Min and max values are NOT configured for sensor {device['name']}, percentage will NOT be calculated")
+                logger.info(
+                    f"ADS1115 sensor {device['name']} is connected to the system")
 
-            logger.debug(f"Initializing metrics for ADS1115 sensor {device['name']}")
+            logger.debug(
+                f"Initializing metrics for ADS1115 sensor {device['name']}")
             metrics.initializeMetrics("ads1115", device['type'])
             logger.debug('Getting sensor data')
             sensor.getMetrics()
@@ -139,7 +157,7 @@ def getSensors():
         sensor.getMetrics()
         metrics.sensor_exporter_info.labels("bh1750", "i2c").set(1)
         logger.debug('----------------BH1750-----------')
-    except(ValueError):
+    except (ValueError):
         logger.info('Sensor type BH1750 is not connected to the system')
         logger.debug('----------------BH1750-----------')
 
@@ -158,7 +176,7 @@ def getSensors():
         logger.info('Sensor type LTR390 is not connected to the system')
         logger.debug('----------------LTR390-----------')
 
-    return make_wsgi_app()
+    return None
 
 
 def main():
@@ -170,9 +188,11 @@ def main():
 
     metrics.initializeMetrics()
 
-    serve(app, host='0.0.0.0', port=(port or 8080))
+    start_wsgi_server(addr='0.0.0.0', port=int(port or 8080))
+    while True:
+        getSensors()
+        sleep(30)
 
 
 if __name__ == '__main__':
     main()
-
